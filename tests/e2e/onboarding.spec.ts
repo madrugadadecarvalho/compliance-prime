@@ -91,14 +91,15 @@ test.describe.serial("Fluxo completo de onboarding", () => {
     await upload.getByRole("button", { name: "Carregar" }).click();
     await expect(page.getByText("O conteúdo do ficheiro não corresponde")).toBeVisible();
 
-    for (const [type, file] of [
-      ["CERTIDAO_COMERCIAL", "documento.pdf"],
-      ["ESTATUTOS", "comprovativo.png"],
+    for (const [type, file, label] of [
+      ["CERTIDAO_COMERCIAL", "documento.pdf", "Certidão comercial"],
+      ["ESTATUTOS", "comprovativo.png", "Estatutos / pacto social"],
     ] as const) {
       await upload.getByLabel("Tipo de documento").selectOption(type);
       await upload.getByLabel("Ficheiro").setInputFiles(fixture(file));
       await upload.getByRole("button", { name: "Carregar" }).click();
-      await expect(page.getByText("Documento carregado.")).toBeVisible();
+      // Espera pela linha na tabela (a mensagem de sucesso pode ser a do envio anterior).
+      await expect(page.getByRole("cell", { name: label, exact: true })).toBeVisible();
     }
 
     // Falta o NIF: a submissão deixa o processo pendente de documentos.
@@ -114,7 +115,7 @@ test.describe.serial("Fluxo completo de onboarding", () => {
       buffer: Buffer.from(`%PDF-1.4\n% nif ${unique}\n%%EOF\n`),
     });
     await upload.getByRole("button", { name: "Carregar" }).click();
-    await expect(page.getByText("Documento carregado.")).toBeVisible();
+    await expect(page.getByRole("cell", { name: "Comprovativo de NIF", exact: true })).toBeVisible();
 
     await page.getByRole("button", { name: "Submeter para análise" }).click();
     await expect(page.getByText("Screening executado. Aguarda decisão de um supervisor.")).toBeVisible();
