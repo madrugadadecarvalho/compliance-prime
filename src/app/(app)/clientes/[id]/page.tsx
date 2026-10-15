@@ -104,7 +104,7 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
           <p className="font-mono text-xs text-slate-500">
             <Link href="/clientes" className="hover:underline">Clientes</Link> / {c.reference}
           </p>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">{c.fullName}</h1>
+          <h1 className="mt-1 text-2xl font-semibold tracking-tight text-on-surface">{c.fullName}</h1>
           <div className="mt-2 flex flex-wrap items-center gap-2">
             <StatusBadge status={c.status} />
             <RiskBadge level={c.riskLevel} score={c.riskScore} />
@@ -122,12 +122,12 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
       <div className="grid gap-6 lg:grid-cols-[13rem_1fr]">
         {/* Navegação por âncoras: o analista vê o contexto completo sem saltar entre abas */}
         <nav aria-label="Secções do processo" className="hidden lg:block">
-          <ul className="sticky top-20 space-y-0.5 border-l border-slate-200">
+          <ul className="sticky top-20 space-y-0.5 border-l border-outline-variant">
             {SECTIONS.map(([anchor, label]) => (
               <li key={anchor}>
                 <a
                   href={`#${anchor}`}
-                  className="-ml-px flex items-center justify-between border-l-2 border-transparent py-1.5 pl-3 pr-1 text-sm text-slate-600 hover:border-brand-600 hover:text-slate-900"
+                  className="-ml-px flex items-center justify-between border-l-2 border-transparent py-1.5 pl-3 pr-1 text-sm text-slate-600 hover:border-primary hover:text-on-surface"
                 >
                   {label}
                   {counts[anchor] ? (
@@ -161,11 +161,11 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
                       key={s}
                       aria-current={current ? "step" : undefined}
                       className={cn(
-                        "flex items-center gap-2 rounded-md border px-3 py-2 text-sm",
-                        current && "border-brand-600 bg-brand-50 font-medium text-brand-900",
-                        done && c.status === "REJEITADO" && i === 3 && "border-red-200 bg-red-50 text-red-900",
-                        done && !(c.status === "REJEITADO" && i === 3) && "border-emerald-200 bg-emerald-50 text-emerald-900",
-                        !current && !done && "border-slate-200 text-slate-500",
+                        "flex items-center gap-2 rounded-2xl border px-3.5 py-2 text-sm",
+                        current && "border-transparent bg-primary-container font-medium text-on-primary-container",
+                        done && c.status === "REJEITADO" && i === 3 && "border-transparent bg-red-100 text-red-900",
+                        done && !(c.status === "REJEITADO" && i === 3) && "border-transparent bg-emerald-100 text-emerald-900",
+                        !current && !done && "border-outline-variant text-on-surface-variant",
                       )}
                     >
                       {done ? <Check className="size-4" aria-hidden /> : <span className="text-xs tabular-nums">{i + 1}</span>}
@@ -181,7 +181,7 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
                 </Notice>
               ) : (
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold text-slate-900">O que pode fazer agora</h3>
+                  <h3 className="text-sm font-semibold text-on-surface">O que pode fazer agora</h3>
 
                   {submit.allowed && (
                     <div className="space-y-2">
@@ -236,7 +236,7 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
             />
             <CardBody>
               {c.riskFactors?.length ? (
-                <ul className="divide-y divide-slate-100 text-sm">
+                <ul className="divide-y divide-outline-variant text-sm">
                   {c.riskFactors.map((f) => (
                     <li key={f.factor} className="flex justify-between py-2">
                       <span>{f.factor}</span>
@@ -297,7 +297,7 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
                       {editable && <Th><span className="sr-only">Ações</span></Th>}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-outline-variant">
                     {d.parties.map((p) => (
                       <tr key={p.id}>
                         <Td className="font-medium">{p.fullName}</Td>
@@ -331,11 +331,11 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
               {d.links.length === 0 ? (
                 <EmptyState title="Sem vínculos registados." />
               ) : (
-                <ul className="divide-y divide-slate-100">
+                <ul className="divide-y divide-outline-variant">
                   {d.links.map((l) => (
                     <li key={l.id} className="flex items-start justify-between gap-3 py-2.5">
                       <div>
-                        <p className="text-sm font-medium text-slate-900">
+                        <p className="text-sm font-medium text-on-surface">
                           {l.entityName} <span className="font-normal text-slate-500">· {l.relationType}</span>
                         </p>
                         {l.description && <p className="text-sm text-slate-600">{l.description}</p>}
@@ -382,12 +382,12 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
                       <Th><span className="sr-only">Ações</span></Th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100">
+                  <tbody className="divide-y divide-outline-variant">
                     {d.documents.map((doc) => (
                       <tr key={doc.id}>
                         <Td className="font-medium">{DOCUMENT_LABEL[doc.type]}</Td>
                         <Td>
-                          <a href={`/api/documentos/${doc.id}`} className="text-brand-700 hover:underline">
+                          <a href={`/api/documentos/${doc.id}`} className="text-primary hover:underline">
                             {doc.fileName}
                           </a>
                           <div className="font-mono text-[11px] text-slate-500" title={doc.sha256}>
@@ -440,12 +440,12 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
               ) : d.alerts.length === 0 ? (
                 <Notice tone="green">Screening executado sem correspondências acima do limiar.</Notice>
               ) : (
-                <ul className="divide-y divide-slate-100">
+                <ul className="divide-y divide-outline-variant">
                   {d.alerts.map((a) => (
                     <li key={a.id} className="py-3">
                       <Link href={`/alertas/${a.id}`} className="group flex flex-wrap items-center justify-between gap-3">
                         <div className="min-w-0">
-                          <p className="text-sm font-medium text-slate-900 group-hover:underline">
+                          <p className="text-sm font-medium text-on-surface group-hover:underline">
                             {a.subjectName}{" "}
                             <span className="font-normal text-slate-500">
                               ({SUBJECT_LABEL[a.subjectType].toLowerCase()})
@@ -481,12 +481,12 @@ export default async function ClientDetailPage({ params }: PageProps<"/clientes/
               )}
             />
             <CardBody>
-              <ol className="relative space-y-4 border-l border-slate-200 pl-5">
+              <ol className="relative space-y-4 border-l border-outline-variant pl-5">
                 {d.history.map((h) => (
                   <li key={h.id} className="relative">
-                    <span className="absolute -left-[25px] top-1.5 size-2.5 rounded-full bg-brand-600 ring-4 ring-white" aria-hidden />
+                    <span className="absolute -left-[25px] top-1.5 size-2.5 rounded-full bg-primary ring-4 ring-surface" aria-hidden />
                     <p className="text-sm">
-                      <span className="font-medium text-slate-900">{ACTION_LABEL[h.action as AuditAction] ?? h.action}</span>
+                      <span className="font-medium text-on-surface">{ACTION_LABEL[h.action as AuditAction] ?? h.action}</span>
                       <span className="text-slate-500"> · {h.actorName} ({h.actorRole}) · </span>
                       <time dateTime={h.createdAt.toISOString()} className="text-slate-500">{formatDateTime(h.createdAt)}</time>
                     </p>

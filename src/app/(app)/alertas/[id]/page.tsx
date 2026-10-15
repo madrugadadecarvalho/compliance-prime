@@ -47,7 +47,7 @@ export default async function AlertDetailPage({ params }: PageProps<"/alertas/[i
         <Link href={`/clientes/${alert.clientId}#alertas`} className="hover:underline">{alert.clientReference}</Link>
       </p>
       <div className="mb-6 mt-1 flex flex-wrap items-center gap-3">
-        <h1 className="text-2xl font-semibold tracking-tight text-slate-900">{alert.subjectName}</h1>
+        <h1 className="text-2xl font-semibold tracking-tight text-on-surface">{alert.subjectName}</h1>
         <CategoryBadge category={alert.category} />
         <AlertStatusBadge status={alert.status} />
       </div>
@@ -59,7 +59,7 @@ export default async function AlertDetailPage({ params }: PageProps<"/alertas/[i
             <CardHeader title="O que foi identificado" />
             <CardBody>
               <div className="grid gap-4 sm:grid-cols-2">
-                <div className="rounded-md border border-slate-200 p-4">
+                <div className="rounded-xl border border-outline-variant p-4">
                   <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Sujeito verificado</p>
                   <p className="mt-1 text-lg font-semibold">{alert.subjectName}</p>
                   <p className="text-sm text-slate-600">
@@ -69,7 +69,7 @@ export default async function AlertDetailPage({ params }: PageProps<"/alertas/[i
                     País: {countryName(proc.country)} · Nacionalidade: {countryName(proc.nationality)}
                   </p>
                 </div>
-                <div className="rounded-md border border-red-200 bg-red-50/40 p-4">
+                <div className="rounded-xl bg-red-100/60 p-4">
                   <p className="text-xs font-medium uppercase tracking-wide text-slate-500">Entrada na lista</p>
                   <p className="mt-1 text-lg font-semibold">{alert.listName}</p>
                   {alert.listAliases.length ? (

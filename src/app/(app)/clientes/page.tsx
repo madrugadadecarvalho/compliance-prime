@@ -42,8 +42,10 @@ export default async function ClientsPage({ searchParams }: PageProps<"/clientes
                 href={href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-full px-3 py-1 text-sm",
-                  active ? "bg-brand-700 text-white" : "bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50",
+                  "inline-flex h-8 items-center rounded-full px-3.5 text-sm transition",
+                  active
+                    ? "bg-secondary-container font-medium text-on-secondary-container"
+                    : "text-on-surface-variant ring-1 ring-inset ring-outline-variant hover:bg-surface-container",
                 )}
               >
                 {s ? STATUS_LABEL[s] : "Todos"}
@@ -65,7 +67,7 @@ export default async function ClientsPage({ searchParams }: PageProps<"/clientes
           </div>
         ) : (
           <Table>
-            <thead className="bg-slate-50">
+            <thead className="bg-surface-container/60">
               <tr>
                 <Th>Referência</Th>
                 <Th>Cliente</Th>
@@ -77,11 +79,11 @@ export default async function ClientsPage({ searchParams }: PageProps<"/clientes
                 <Th>Atualizado</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-outline-variant">
               {rows.map((r) => (
-                <tr key={r.id} className="hover:bg-slate-50">
+                <tr key={r.id} className="hover:bg-surface-container/60">
                   <Td className="font-mono text-xs">
-                    <Link href={`/clientes/${r.id}`} className="font-medium text-brand-700 hover:underline">
+                    <Link href={`/clientes/${r.id}`} className="font-medium text-primary hover:underline">
                       {r.reference}
                     </Link>
                   </Td>

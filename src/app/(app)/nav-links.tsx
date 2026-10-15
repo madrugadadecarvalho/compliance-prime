@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BellRing, FileClock, LayoutDashboard, UserCog, Users } from "lucide-react";
+import { BellRing, FileClock, LayoutGrid, UserCog, Users } from "lucide-react";
 import { cn } from "@/components/ui";
 
 const ICONS = {
-  dashboard: LayoutDashboard,
+  dashboard: LayoutGrid,
   clients: Users,
   alerts: BellRing,
   audit: FileClock,
@@ -16,7 +16,7 @@ const ICONS = {
 export function NavLinks({ links }: { links: { href: string; label: string; icon: keyof typeof ICONS }[] }) {
   const pathname = usePathname();
   return (
-    <nav aria-label="Navegação principal" className="flex gap-1 overflow-x-auto px-3 pb-3 lg:flex-col lg:pb-0">
+    <nav aria-label="Navegação principal" className="flex gap-1 overflow-x-auto px-3 pb-2 lg:flex-col lg:px-4 lg:pb-0">
       {links.map((link) => {
         const Icon = ICONS[link.icon];
         const active = pathname === link.href || pathname.startsWith(`${link.href}/`);
@@ -26,11 +26,13 @@ export function NavLinks({ links }: { links: { href: string; label: string; icon
             href={link.href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "flex items-center gap-2 whitespace-nowrap rounded-md px-3 py-2 text-sm transition",
-              active ? "bg-white/10 font-medium text-white" : "text-brand-100 hover:bg-white/5 hover:text-white",
+              "flex h-10 shrink-0 items-center gap-3 rounded-full px-4 text-sm whitespace-nowrap transition-colors focus-visible:outline-2 focus-visible:outline-primary",
+              active
+                ? "bg-primary-container font-medium text-on-primary-container"
+                : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface",
             )}
           >
-            <Icon className="size-4" aria-hidden />
+            <Icon className="size-[1.1rem]" strokeWidth={active ? 2.2 : 1.8} aria-hidden />
             {link.label}
           </Link>
         );

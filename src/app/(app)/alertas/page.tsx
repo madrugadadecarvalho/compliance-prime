@@ -31,8 +31,10 @@ export default async function AlertsPage({ searchParams }: PageProps<"/alertas">
               href={`/alertas?estado=${f}`}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "rounded-full px-3 py-1 text-sm",
-                active ? "bg-brand-700 text-white" : "bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50",
+                "inline-flex h-8 items-center rounded-full px-3.5 text-sm transition",
+                active
+                  ? "bg-secondary-container font-medium text-on-secondary-container"
+                  : "text-on-surface-variant ring-1 ring-inset ring-outline-variant hover:bg-surface-container",
               )}
             >
               {f === "todos" ? "Todos" : ALERT_STATUS_LABEL[f]}
@@ -47,7 +49,7 @@ export default async function AlertsPage({ searchParams }: PageProps<"/alertas">
           </div>
         ) : (
           <Table>
-            <thead className="bg-slate-50">
+            <thead className="bg-surface-container/60">
               <tr>
                 <Th>Sujeito</Th>
                 <Th>Identificado</Th>
@@ -58,11 +60,11 @@ export default async function AlertsPage({ searchParams }: PageProps<"/alertas">
                 <Th>Gerado</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-outline-variant">
               {rows.map((a) => (
-                <tr key={a.id} className="hover:bg-slate-50">
+                <tr key={a.id} className="hover:bg-surface-container/60">
                   <Td>
-                    <Link href={`/alertas/${a.id}`} className="font-medium text-brand-700 hover:underline">
+                    <Link href={`/alertas/${a.id}`} className="font-medium text-primary hover:underline">
                       {a.subjectName}
                     </Link>
                     <div className="text-xs text-slate-500">{SUBJECT_LABEL[a.subjectType]}</div>

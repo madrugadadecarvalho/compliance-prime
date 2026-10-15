@@ -136,7 +136,7 @@ export function AddPartyForm({ clientId }: { clientId: string }) {
   const { state, formAction, errors, onSubmit } = useValidatedAction(addRelatedPartyAction, relatedPartySchema);
   const ref = useResetOnSuccess(state);
   return (
-    <form ref={ref} action={formAction} onSubmit={onSubmit} noValidate className="space-y-3 rounded-md bg-slate-50 p-4">
+    <form ref={ref} action={formAction} onSubmit={onSubmit} noValidate className="space-y-3 rounded-xl bg-surface-container p-4">
       <p className="text-sm font-medium text-slate-800">Adicionar sócio, administrador ou beneficiário efetivo</p>
       <input type="hidden" name="clientId" value={clientId} />
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -159,7 +159,7 @@ export function AddLinkForm({ clientId }: { clientId: string }) {
   const { state, formAction, errors, onSubmit } = useValidatedAction(addLinkAction, clientLinkSchema);
   const ref = useResetOnSuccess(state);
   return (
-    <form ref={ref} action={formAction} onSubmit={onSubmit} noValidate className="space-y-3 rounded-md bg-slate-50 p-4">
+    <form ref={ref} action={formAction} onSubmit={onSubmit} noValidate className="space-y-3 rounded-xl bg-surface-container p-4">
       <p className="text-sm font-medium text-slate-800">Adicionar vínculo</p>
       <input type="hidden" name="clientId" value={clientId} />
       <div className="grid gap-3 sm:grid-cols-2">
@@ -189,7 +189,7 @@ export function UploadDocumentForm({ clientId, suggested }: { clientId: string; 
       action={formAction}
       onSubmit={onSubmit}
       noValidate
-      className="space-y-3 rounded-md bg-slate-50 p-4"
+      className="space-y-3 rounded-xl bg-surface-container p-4"
     >
       <p className="text-sm font-medium text-slate-800">Carregar documento</p>
       <input type="hidden" name="clientId" value={clientId} />
@@ -237,7 +237,7 @@ export function ReviewDocumentButtons({ documentId }: { documentId: string }) {
       <Button type="button" variant="secondary" className="px-2.5 py-1 text-xs" onClick={() => rejectRef.current?.showModal()}>
         Rejeitar
       </Button>
-      <dialog ref={rejectRef} className="m-auto w-full max-w-md rounded-lg p-0 shadow-xl backdrop:bg-slate-900/50">
+      <dialog ref={rejectRef} className="m-auto w-full max-w-md rounded-3xl p-0 shadow-elevation-2 backdrop:bg-black/40">
         <form action={formAction} className="space-y-4 p-6" onSubmit={() => rejectRef.current?.close()}>
           <h2 className="text-lg font-semibold">Rejeitar documento</h2>
           <input type="hidden" name="documentId" value={documentId} />

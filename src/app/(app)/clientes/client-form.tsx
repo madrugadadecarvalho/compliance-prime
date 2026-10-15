@@ -80,7 +80,7 @@ export function ClientForm({
       </Card>
 
       <div className="flex justify-end gap-2">
-        <Link href={cancelHref} className="rounded-md px-3.5 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100">
+        <Link href={cancelHref} className="rounded-full px-4 py-2 text-sm font-medium text-primary hover:bg-primary-container/40">
           Cancelar
         </Link>
         <SubmitButton pendingLabel="A guardar…">{submitLabel}</SubmitButton>

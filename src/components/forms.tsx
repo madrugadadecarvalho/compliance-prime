@@ -204,7 +204,7 @@ export function Checkbox({
         name={name}
         type="checkbox"
         defaultChecked={defaultChecked}
-        className="mt-0.5 size-4 rounded border-slate-300 text-brand-700 focus:ring-brand-600"
+        className="mt-0.5 size-4 rounded border-outline accent-[var(--primary)]"
       />
       <label htmlFor={id ?? name} className="text-sm text-slate-800">
         {label}
@@ -267,13 +267,13 @@ export function ConfirmActionForm({
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
-        className="m-auto w-full max-w-lg rounded-lg p-0 shadow-xl backdrop:bg-slate-900/50"
+        className="m-auto w-full max-w-lg rounded-3xl p-0 shadow-elevation-2 backdrop:bg-black/40"
       >
         <form action={formAction} onSubmit={onSubmit} noValidate className="space-y-4 p-6">
-          <h2 id={titleId} className="text-lg font-semibold text-slate-900">
+          <h2 id={titleId} className="text-lg font-semibold text-on-surface">
             {title}
           </h2>
-          <div className="rounded-md bg-slate-50 p-3 text-sm text-slate-700">{impact}</div>
+          <div className="rounded-xl bg-surface-container p-3 text-sm text-slate-700">{impact}</div>
           {Object.entries(hidden).map(([k, v]) => (
             <input key={k} type="hidden" name={k} value={v} />
           ))}

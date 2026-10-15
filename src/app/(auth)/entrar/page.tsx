@@ -15,7 +15,7 @@ export default async function SignInPage({ searchParams }: PageProps<"/entrar">)
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold tracking-tight">Entrar</h1>
+      <h1 className="text-[2rem] leading-tight font-normal tracking-tight">Entrar</h1>
       <p className="mt-1 text-sm text-slate-600">Aceda à sua área de trabalho de compliance.</p>
       <div className="mt-6">
         <SignInForm next={safeNext} />
@@ -23,7 +23,7 @@ export default async function SignInPage({ searchParams }: PageProps<"/entrar">)
       {env.ALLOW_SIGNUP && (
         <p className="mt-6 text-sm text-slate-600">
           Ainda não tem conta?{" "}
-          <Link href="/registar" className="font-medium text-brand-700 hover:underline">
+          <Link href="/registar" className="font-medium text-primary hover:underline">
             Registar
           </Link>
         </p>

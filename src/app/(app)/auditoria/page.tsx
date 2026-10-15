@@ -39,7 +39,7 @@ export default async function AuditPage({ searchParams }: PageProps<"/auditoria"
           can(user.role, "audit:export") && (
             <a
               href={`/api/auditoria/exportar${exportQuery ? `?${exportQuery}` : ""}`}
-              className="inline-flex items-center gap-2 rounded-md bg-white px-3.5 py-2 text-sm font-medium text-slate-800 ring-1 ring-slate-300 hover:bg-slate-50"
+              className="inline-flex items-center gap-2 rounded-full bg-surface px-4 py-2 text-sm font-medium text-primary ring-1 ring-inset ring-outline hover:bg-primary-container/40"
             >
               <Download className="size-4" aria-hidden /> Exportar CSV
             </a>
@@ -47,7 +47,7 @@ export default async function AuditPage({ searchParams }: PageProps<"/auditoria"
         }
       />
 
-      <form className="mb-4 grid gap-3 rounded-lg border border-slate-200 bg-white p-4 sm:grid-cols-2 lg:grid-cols-6" role="search">
+      <form className="mb-4 grid gap-3 rounded-2xl border border-outline-variant bg-surface shadow-elevation-1 p-4 sm:grid-cols-2 lg:grid-cols-6" role="search">
         <div className="lg:col-span-2">
           <label htmlFor="q" className="text-xs font-medium text-slate-600">Texto (resumo, justificação, referência)</label>
           <input id="q" name="q" defaultValue={filters.q} maxLength={80} className={cn(inputClass, "mt-1")} />
@@ -75,7 +75,7 @@ export default async function AuditPage({ searchParams }: PageProps<"/auditoria"
         </div>
         <div className="flex gap-2 sm:col-span-2 lg:col-span-6">
           <Button type="submit">Filtrar</Button>
-          <Link href="/auditoria" className="rounded-md px-3.5 py-2 text-sm text-slate-700 hover:bg-slate-100">Limpar</Link>
+          <Link href="/auditoria" className="rounded-full px-4 py-2 text-sm text-on-surface-variant hover:bg-surface-container">Limpar</Link>
         </div>
       </form>
 
@@ -84,7 +84,7 @@ export default async function AuditPage({ searchParams }: PageProps<"/auditoria"
           <div className="p-5"><EmptyState title="Sem registos para estes filtros." /></div>
         ) : (
           <Table>
-            <thead className="bg-slate-50">
+            <thead className="bg-surface-container/60">
               <tr>
                 <Th>Data/hora</Th>
                 <Th>Autor</Th>
@@ -93,7 +93,7 @@ export default async function AuditPage({ searchParams }: PageProps<"/auditoria"
                 <Th>Detalhe</Th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-outline-variant">
               {rows.map((r) => (
                 <tr key={r.id}>
                   <Td className="whitespace-nowrap font-mono text-xs text-slate-600">{formatDateTime(r.createdAt)}</Td>

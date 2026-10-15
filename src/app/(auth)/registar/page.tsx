@@ -12,7 +12,7 @@ export default async function SignUpPage() {
   if (await getCurrentUser()) redirect("/painel");
   return (
     <div>
-      <h1 className="text-2xl font-semibold tracking-tight">Criar conta</h1>
+      <h1 className="text-[2rem] leading-tight font-normal tracking-tight">Criar conta</h1>
       <p className="mt-1 text-sm text-slate-600">
         Novas contas entram com o perfil <strong>Analista</strong>. Outros perfis são atribuídos por um Gestor de
         Compliance.
@@ -22,7 +22,7 @@ export default async function SignUpPage() {
       </div>
       <p className="mt-6 text-sm text-slate-600">
         Já tem conta?{" "}
-        <Link href="/entrar" className="font-medium text-brand-700 hover:underline">
+        <Link href="/entrar" className="font-medium text-primary hover:underline">
           Entrar
         </Link>
       </p>

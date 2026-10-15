@@ -33,7 +33,7 @@ export default async function UsersPage() {
       </Card>
       <Card>
         <Table>
-          <thead className="bg-slate-50">
+          <thead className="bg-surface-container/60">
             <tr>
               <Th>Nome</Th>
               <Th>Perfil</Th>
@@ -42,7 +42,7 @@ export default async function UsersPage() {
               <Th><span className="sr-only">Ações</span></Th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-outline-variant">
             {users.map((u) => (
               <tr key={u.id}>
                 <Td>
