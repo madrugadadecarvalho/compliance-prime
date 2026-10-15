@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: compliance
+      POSTGRES_PASSWORD: compliance
+      POSTGRES_DB: compliance_prime
+    ports:
+      - "5432:5432"
+    volumes:
+      - compliance_prime_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U compliance -d compliance_prime"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  compliance_prime_data:
